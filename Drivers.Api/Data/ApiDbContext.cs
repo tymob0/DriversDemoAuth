@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Drivers.Api.Data
 {
-    public class DBContext : IdentityDbContext
+    public class ApiDBContext : IdentityDbContext
     {
-        public DBContext(DbContextOptions<DBContext> options): base(options)
+        public ApiDBContext(DbContextOptions<ApiDBContext> options) : base(options)
         {
 
         }

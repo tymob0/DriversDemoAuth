@@ -1,4 +1,5 @@
 using Drivers.Api.Configurations;
+using Drivers.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<JWTConfig>(builder.Configuration.GetSection("JwtConfig"));
 
-builder.Services.AddDbContext<DbContext>(options =>
+builder.Services.AddDbContext<ApiDBContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
