@@ -66,6 +66,37 @@ namespace Drivers.Api.Controllers
             return BadRequest("Invalid request payload");
         }
 
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login([FromBody] UserLoginRequestDTO requestDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingUser = await _userManager.FindByEmailAsync(requestDTO.Email);
+                if (existingUser == null)
+                {
+                    return BadRequest("Invalid authentication");
+                }
+                var isPasswordValid = await _userManager.CheckPasswordAsync(existingUser, requestDTO.Password);
+
+                if (isPasswordValid)
+                {
+                    var token = generateJWTToken(existingUser);
+
+                    return Ok(new LoginRequestResponseDTO()
+                    {
+                        Result = true,
+                        Token = token
+                    });
+                }
+
+                return BadRequest("Invalid authentication");
+
+            }
+
+            return BadRequest("Invalid request payload");
+        }
+
         private string generateJWTToken(IdentityUser user)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
