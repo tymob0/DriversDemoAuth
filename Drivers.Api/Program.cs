@@ -34,10 +34,10 @@ builder.Services.AddAuthentication(options =>
     jwt.SaveToken = true;
     jwt.TokenValidationParameters = new TokenValidationParameters()
     {
-        ValidateIssuer = true,
+        ValidateIssuer = false,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateAudience = true,
+        ValidateAudience = false,
         RequireExpirationTime = false,
         ValidateLifetime = false
     };
