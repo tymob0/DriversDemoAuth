@@ -11,7 +11,7 @@ using System.Text;
 namespace Drivers.Api.Controllers
 {
     [ApiController]
-    [Route("api/controller")]
+    [Route("api/AuthManager")]
     public class AuthManagementController : ControllerBase
     {
 

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Drivers.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/WeatherManager")]
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class WeatherForecastController : ControllerBase
 {
